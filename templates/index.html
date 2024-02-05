@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <h1>Weather App</h1>
+            <form action="/" method="POST">
+                <input type="text" name="city" placeholder="Enter City Name">
+                <button type="submit">Get Weather</button>
+            </form>
+        </div>
+        {% if weather_data %}
+        <div class="flexbox">
+            <div class="content">
+                <div class="detail1">
+                    <div class="loc">
+                        <h4 class="city">{{ weather_data['data'][0]['city_name'] }}</h4>
+                        <img style="filter: invert(100%);" src="/static/Images/location.png">
+                        <h4>{{ weather_data['data'][0]['country_code'] }}</h4>
+                        <img src="https://flagsapi.com/{{ weather_data['data'][0]['country_code'] }}/flat/32.png">
+                    </div>
+                    <h1 class="temp">{{ weather_data['data'][0]['temp'] }}°</h1>
+                    <h6 class="desc">{{ weather_data['data'][0]['weather']['description'] }}</h6><br><br>
+                    <h6>Feels like {{ weather_data['data'][0]['app_temp'] }}°</h6>
+                </div>
+                <img id="cloud" src="https://cdn.weatherbit.io/static/img/icons/{{ weather_data['data'][0]['weather']['icon'] }}.png" alt="" srcset="">
+            </div>
+            <div class="gridbox">
+                <div class="basicdata">
+                    <img src="/static/Images/uv.png" alt="">
+                    <h6>UV Index</h6>
+                    <h2>{{ weather_data['data'][0]['uv'] }}</h2>
+                </div>
+                <div class="basicdata">
+                    <img src="/static/Images/humidity.png" alt="">
+                    <h6>Humidity</h6>
+                    <h2>{{ weather_data['data'][0]['rh'] }}%</h2>
+                </div>
+                <div class="basicdata">
+                    <img src="/static/Images/wind.png" alt="">
+                    <h6>Wind</h6>
+                    <h2>{{ weather_data['data'][0]['wind_spd'] }}m/s</h2>
+                </div>
+                <div class="basicdata">
+                    <img src="/static/Images/dew.png" alt="">
+                    <h6>Dew point</h6>
+                    <h2>{{ weather_data['data'][0]['dewpt'] }}°</h2>
+                </div>
+                <div class="basicdata">
+                    <img src="/static/Images/air.png" alt="">
+                    <h6>Pressure</h6>
+                    <h2>{{ weather_data['data'][0]['pres'] }}mb</h2>
+                </div>
+                <div class="basicdata">
+                    <img src="/static/Images/eye.png" alt="">
+                    <h6>Visibility</h6>
+                    <h2>{{ weather_data['data'][0]['vis'] }}km</h2>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+    </div>
+</body>
+</html>

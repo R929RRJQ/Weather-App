@@ -1,0 +1,38 @@
+{% if weather_data %}
+<div class="weather-data">
+    <div class="weather-info">
+      <div class="weather-icon">
+        <img src="https://cdn.weatherbit.io/static/img/icons/{{weather_data['data'][0]['weather']['icon']}}.png" alt="{{ weather_data['description'] }}" />
+    </div>
+    
+        <div class="weather-description">
+            {{ weather_data['data'][0]['description'] }}
+        </div>
+    </div>
+    <div class="weather-details">
+        <div class="weather-detail">
+            <div class="detail-label">Temperature:</div>
+            <div class="detail-value">{{ weather_data['data'][0]['temp'] }}°C</div>
+        </div>
+        <div class="weather-detail">
+            <div class="detail-label">Humidity:</div>
+            <div class="detail-value">{{ weather_data['data'][0]['rh'] }}%</div>
+        </div>
+        <div class="weather-detail">
+            <div class="detail-label">Wind Speed:</div>
+            <div class="detail-value">{{ weather_data['data'][0]['wind_spd'] }} m/s</div>
+        </div>
+        <div class="weather-detail">
+            <div class="detail-label">Sunrise:</div>
+            <div class="detail-value">{{ weather_data['data'][0]['sunrise'] }}</div>
+        </div>
+        <div class="weather-detail">
+            <div class="detail-label">Sunset:</div>
+            <div class="detail-value">{{ weather_data['data'][0]['sunset'] }}</div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{{ url_for('static', filename='css/style.css') }}
